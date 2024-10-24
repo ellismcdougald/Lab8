@@ -32,6 +32,13 @@ public class CustomListTest {
         return new CustomList(null, cities);
     }
 
+    public CustomList MockCityList2() {
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(new City("Calgary", "Alberta"));
+        cities.add(new City("Red Deer", "Alberta"));
+        return new CustomList(null, cities);
+    }
+
     /**
      * get the size of the list
      * increase the list by adding a new city
@@ -77,4 +84,18 @@ public class CustomListTest {
         Assertions.assertEquals("City to be deleted must exist in the list!", thrown.getMessage());
     }
 
+    @Test
+    void testCountCities() {
+        // List with 1 city
+        CustomList cityList = MockCityList1();
+        assertEquals(cityList.countCities(), 1);
+
+        // List with 0 cities
+        cityList = MockCityList();
+        assertEquals(cityList.countCities(), 0);
+
+        // List with 2 cities
+        cityList = MockCityList2();
+        assertEquals(cityList.countCities(), 2);
+    }
 }
