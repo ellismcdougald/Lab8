@@ -32,6 +32,13 @@ public class CustomListTest {
         return new CustomList(null, cities);
     }
 
+    public CustomList MockCityList2() {
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(new City("Calgary", "Alberta"));
+        cities.add(new City("Red Deer", "Alberta"));
+        return new CustomList(null, cities);
+    }
+
     /**
      * get the size of the list
      * increase the list by adding a new city
@@ -79,17 +86,16 @@ public class CustomListTest {
 
     @Test
     void testCountCities() {
+        // List with 1 city
         CustomList cityList = MockCityList1();
         assertEquals(cityList.countCities(), 1);
 
-        // Remove a city so number of cities is now zero
-        cityList.delete(new City("Edmonton", "Alberta"));
+        // List with 0 cities
+        cityList = MockCityList();
         assertEquals(cityList.countCities(), 0);
 
-        // Add two cities so number of cities is now two
-        cityList.add(new City("Calgary", "Alberta"));
-        cityList.add(new City("Red Deer", "Alberta"));
+        // List with 2 cities
+        cityList = MockCityList2();
         assertEquals(cityList.countCities(), 2);
     }
-
 }
