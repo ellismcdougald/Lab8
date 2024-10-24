@@ -78,7 +78,10 @@ public class CustomList extends ArrayAdapter<City> {
      *     This is the city to delete
      */
     public void delete(City city) {
-        // not implemented yet
+        if(hasCity(city)) {
+            cities.remove(city);
+        } else {
+            throw new IllegalArgumentException("City to be deleted must exist in the list!");
+        }
     }
-
 }
