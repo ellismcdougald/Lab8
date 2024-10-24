@@ -3,10 +3,12 @@ package com.example.lab8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 //import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +24,12 @@ public class CustomListTest {
     public CustomList MockCityList(){
         list = new CustomList(null,new ArrayList<>());
         return list;
+    }
+
+    public CustomList MockCityList1() {
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(new City("Edmonton", "Alberta"));
+        return new CustomList(null, cities);
     }
 
     /**
@@ -48,6 +56,25 @@ public class CustomListTest {
 
         City city2 = new City("Calgary", "Alberta");
         assertFalse(cityList.hasCity(city2));
+    }
+
+    @Test
+    void testDeleteSuccessful() {
+        CustomList cityList = MockCityList1();
+        City city = new City("Edmonton", "Alberta");
+        cityList.delete(city);
+        assertEquals(cityList.getCities().size(), 0);
+    }
+
+    @Test
+    void testDeleteFail() {
+        CustomList cityList = MockCityList1();
+        City city = new City("Calgary", "Alberta");
+
+        Throwable thrown = assertThrows(RuntimeException.class, () -> {
+            cityList.delete(city);
+        });
+        Assertions.assertEquals("City to be deleted must exist in the list!", thrown.getMessage());
     }
 
 }
