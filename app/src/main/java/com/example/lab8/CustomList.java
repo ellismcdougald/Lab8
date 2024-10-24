@@ -49,6 +49,11 @@ public class CustomList extends ArrayAdapter<City> {
         return cities.size();
     }
 
+    public ArrayList<City> getCities() {
+        // not implemented yet
+        return new ArrayList<>();
+    }
+
     public void addCity(City city){
         cities.add(city);
     }
@@ -67,4 +72,16 @@ public class CustomList extends ArrayAdapter<City> {
         return false;
     }
 
+    /**
+     * This deletes a city from the list if the city exists. If not, it throws an IllegalArgumentException.
+     * @param city
+     *     This is the city to delete
+     */
+    public void delete(City city) {
+        if(hasCity(city)) {
+            cities.remove(city);
+        } else {
+            throw new IllegalArgumentException("City to be deleted must exist in the list!");
+        }
+    }
 }
