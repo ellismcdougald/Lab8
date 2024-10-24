@@ -77,4 +77,19 @@ public class CustomListTest {
         Assertions.assertEquals("City to be deleted must exist in the list!", thrown.getMessage());
     }
 
+    @Test
+    void testCountCities() {
+        CustomList cityList = MockCityList1();
+        assertEquals(cityList.countCities(), 1);
+
+        // Remove a city so number of cities is now zero
+        cityList.delete(new City("Edmonton", "Alberta"));
+        assertEquals(cityList.countCities(), 0);
+
+        // Add two cities so number of cities is now two
+        cityList.add(new City("Calgary", "Alberta"));
+        cityList.add(new City("Red Deer", "Alberta"));
+        assertEquals(cityList.countCities(), 2);
+    }
+
 }

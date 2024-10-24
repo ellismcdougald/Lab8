@@ -84,4 +84,13 @@ public class CustomList extends ArrayAdapter<City> {
             throw new IllegalArgumentException("City to be deleted must exist in the list!");
         }
     }
+
+    /**
+     * This returns the number of cities in the list.
+     * @return
+     *     the number of cities in the list, type int
+     */
+    public int countCities() {
+        return 0; // not implemented yet
+    }
 }
