@@ -61,7 +61,10 @@ public class CustomList extends ArrayAdapter<City> {
      *     Return true if it belongs to the list, folse if not
      */
     public boolean hasCity(City city) {
-        return true; // not implemented yet
+        for(int i = 0; i < cities.size(); i++) {
+            if(city.equals(cities.get(i))) return true;
+        }
+        return false;
     }
 
 }
